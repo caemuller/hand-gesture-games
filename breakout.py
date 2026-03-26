@@ -146,6 +146,13 @@ def draw_game_over():
 # ========================
 # GAME LOGIC
 # ========================
+
+MAX_SPEED = 12
+
+def clamp_velocity():
+    ball_vel[0] = max(-MAX_SPEED, min(MAX_SPEED, ball_vel[0]))
+    ball_vel[1] = max(-MAX_SPEED, min(MAX_SPEED, ball_vel[1]))
+
 def update_ball():
     global game_over, score
 
@@ -154,26 +161,26 @@ def update_ball():
 
     # Wall collisions
     if ball_pos[0] <= 0 or ball_pos[0] >= WIDTH:
-        ball_vel[0] *= -1
+        ball_vel[0] *= -1.1   # reverse + speed up
 
     if ball_pos[1] <= 0:
-        ball_vel[1] *= -1
+        ball_vel[1] *= -1.1
 
     # Paddle collision
     paddle_rect = pygame.Rect(paddle_x, PADDLE_Y, PADDLE_W, PADDLE_H)
 
     if paddle_rect.collidepoint(ball_pos[0], ball_pos[1]):
-        ball_vel[1] *= -1
+        ball_vel[1] *= -1.1
 
         # Add control based on hit position
         offset = (ball_pos[0] - paddle_x) / PADDLE_W - 0.5
-        ball_vel[0] = int(offset * 10)
+        ball_vel[0] = offset * 10
 
     # Brick collision
     for brick in bricks[:]:
         if brick.collidepoint(ball_pos[0], ball_pos[1]):
             bricks.remove(brick)
-            ball_vel[1] *= -1
+            ball_vel[1] *= -1.1
             score += 1
             break
 
@@ -181,6 +188,7 @@ def update_ball():
     if ball_pos[1] > HEIGHT:
         game_over = True
 
+    clamp_velocity()
 # ========================
 # MAIN LOOP
 # ========================
