@@ -1,6 +1,35 @@
-# CONTENT 
 
 A real-time hand gesture–controlled games using computer vision. Built with MediaPipe and OpenCV
+
+## 🚀 Installation & Setup
+
+### 1. Prerequisites
+Ensure you have **Python 3.8+** installed on your machine.
+
+### 2. Install Dependencies
+Open your terminal (or Command Prompt) and run:
+```bash
+pip install opencv-python mediapipe pygame
+```
+### 3. Clone the Repo
+```bash
+git clone https://github.com/caemuller/gesture-games.git
+cd gesture-games
+```
+
+
+### 4. Running the Games
+Launch the specific Python file for the game you want to play:
+
+```python
+python snake.py
+
+python tetris.py
+
+python fruit_ninja.py
+
+python breakout.py
+```
 
 # 🐍 Snake (Gesture-Controlled)
 
@@ -65,12 +94,5 @@ Arrange falling blocks to complete horizontal lines. Completed lines disappear a
   - Hands first apart  
   - Then quickly brought together  
 
----
-
-# 📷 Requirements
-
-- Webcam  
-- Good lighting for hand tracking  
-- One or two hands depending on the game  
 
 ---
